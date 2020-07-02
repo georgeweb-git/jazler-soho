@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ellinikos Τώρα</title>
+</head>
+
+<p id="demo"></p>
+
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        myFunction(this);
+    }
+};
+xhttp.open("GET", "NowOnAir.xml", true);
+xhttp.send();
+
+function myFunction(xml) {
+    var x,y,i, xmlDoc, txt;
+    xmlDoc = xml.responseXML;
+    txt = "";
+    x = xmlDoc.getElementsByTagName('Artist');
+    for (i = 0; i < x.length; i++) { 
+        txt += x[i].getAttribute('name') + "<br>";
+    }
+	
+	y = xmlDoc.getElementsByTagName('Song');
+    for (i = 0; i < x.length; i++) { 
+        txt += y[i].getAttribute('title') + "<br>";
+    }
+	
+    document.getElementById("demo").innerHTML = txt; 
+}</script>
+<script type = "text/JavaScript">
+         <!--
+            function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+         //-->
+      </script>
+      
+   
+   <body onload = "JavaScript:AutoRefresh(60000);">
+	
+	
+<img src="CurrentAlbumImage.jpg" alt="Album Cover" width="150px" height="150px">
+
+</body>
+</html>
